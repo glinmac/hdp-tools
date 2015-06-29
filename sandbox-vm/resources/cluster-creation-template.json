@@ -1,0 +1,14 @@
+{
+  "blueprint" : "hdp-singlenode-2.2",
+  "default_password" : "password",
+  "host_groups" :[
+    {
+      "name" : "master",
+      "hosts" : [
+        {
+          "fqdn" : "_FQDN_"
+        }
+      ]
+    }
+  ]
+}
