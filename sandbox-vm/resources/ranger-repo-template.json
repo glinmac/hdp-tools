@@ -1,0 +1,13 @@
+{
+    "name": "_CLUSTER_NAME_-_TYPE_",
+    "description": "_TYPE_ repo",
+    "repositoryType": "_TYPE_",
+    "config": "{
+        \"username\": \"_RANGER_USER_\",
+        \"password\": \"_RANGER_PASSWORD_\",
+        \"hadoop.security.authorization\": \"true\",
+        \"hadoop.security.authentication\": \"simple\",
+    \"fs.default.name\": \"hdfs://_HOST_:8020\"
+    }",
+    "isActive": "true"
+}

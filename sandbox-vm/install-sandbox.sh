@@ -12,8 +12,14 @@ CLUSTER_NAME=sandbox
 AMBARI_API=http://127.0.0.1:8080/api/v1/clusters/$CLUSTER_NAME
 HOST_API=http://127.0.0.1:8080/api/v1/hosts
 BLUEPRINT_API=http://127.0.0.1:8080/api/v1/blueprints
-JAVA_HOME=/usr/lib/jvm/jre-1.7.0
+RANGER_API=http://127.0.0.1:6080/service/public/api
+RANGER_USER=admin
+RANGER_PASSWORD=admin
 BLUEPRINT_NAME=hdp-singlenode-2.2
+
+export JAVA_HOME=/usr/lib/jvm/jre-1.7.0
+
+SCRIPT_DIR=$(pwd)
 
 # Define HDP and Ambari repo
 echo "Installing Yum repo..."
@@ -158,6 +164,22 @@ sed -i.bak \
     -e 's/^XAAUDIT.DB.PASSWORD=/XAAUDIT.DB.PASSWORD=password/' \
     install.properties
 sh enable-knox-plugin.sh
+
+cd ${SCRIPT_DIR}
+
+# Create Ranger repositories
+for service in hdfs hbase hive knox; do
+    sed -e "s/_TYPE_/${service}/g" \
+        -e "s/_CLUSTER_NAME_/${CLUSTER_NAME}/" \
+        -e "s/_RANGER_USER_/${RANGER_USER}/" \
+        -e "s/_RANGER_PASSWORD_/${RANGER_PASSWORD}/" \
+        resources/ranger-repo-template.json > ranger-repo-${service}.json
+    curl -u $RANGER_USER:$RANGER_PASSWORD \
+        -H 'Content-Type: application/json' \
+        -X POST \
+        -d @ranger-repo-${service}.json \
+        $RANGER_API/repository
+done
 
 # Restart services
 
