@@ -1,0 +1,11 @@
+{
+    "name": "_CLUSTER_NAME_-_TYPE_",
+    "description": "_TYPE_ repo",
+    "repositoryType": "_TYPE_",
+    "config": "{
+        \"username\": \"_RANGER_USER_\",
+        \"password\": \"_RANGER_PASSWORD_\",
+        \"knox.url\": \"http://_HOST_:8443/gateway/default\"
+    }",
+    "isActive": "true"
+}

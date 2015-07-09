@@ -1,0 +1,12 @@
+{
+    "name": "_CLUSTER_NAME_-_TYPE_",
+    "description": "_TYPE_ repo",
+    "repositoryType": "_TYPE_",
+    "config": "{
+        \"username\": \"_RANGER_USER_\",
+        \"password\": \"_RANGER_PASSWORD_\",
+        \"jdbc.driverClassName\": \"org.apache.hive.jdbc.HiveDriver\",
+        \"jdbc.url\": \"jdbc:hive2://_HOST_:10000\"
+    }",
+    "isActive": "true"
+}

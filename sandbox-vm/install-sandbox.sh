@@ -168,12 +168,14 @@ sh enable-knox-plugin.sh
 cd ${SCRIPT_DIR}
 
 # Create Ranger repositories
+HOST=$(hostname)
 for service in hdfs hbase hive knox; do
     sed -e "s/_TYPE_/${service}/g" \
         -e "s/_CLUSTER_NAME_/${CLUSTER_NAME}/" \
         -e "s/_RANGER_USER_/${RANGER_USER}/" \
         -e "s/_RANGER_PASSWORD_/${RANGER_PASSWORD}/" \
-        resources/ranger-repo-template.json > ranger-repo-${service}.json
+        -e "s/_HOST_/${HOST}/" \
+        resources/ranger-${service}-repo-template.json > ranger-repo-${service}.json
     curl -u $RANGER_USER:$RANGER_PASSWORD \
         -H 'Content-Type: application/json' \
         -X POST \
