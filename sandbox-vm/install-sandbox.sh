@@ -224,6 +224,8 @@ for user in $USERS; do
     su $user -c "hive -e 'create database $user'"
 done;
 
+# TODO - Add default ranger policies
+# TODO - Upload client libraries to HDFS
 
 
 
