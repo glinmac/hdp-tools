@@ -1,0 +1,8 @@
+# Notes
+
+## Misc
+
+    hadoop checknative
+
+
+
