@@ -20,3 +20,8 @@
   * SSL
 
             !connect jdbc:hive2://<HOST>:10000/<DATABASE>;ssl=true;sslTrustStore=<path>;trustStorePassword=<password>
+
+
+* JDBC
+ * look at fetchSize parameter in connecting applications (increasing it may help in retrieving large volume of data)
+  
