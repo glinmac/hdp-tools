@@ -46,7 +46,7 @@ public class WordCountImpersonate {
 
     final Path p1 = new Path(args[0]);
     final Path p2 = new Path(args[1]);
-    final String p3 = args[2];
+    final String realUser = args[2];
 
     UserGroupInformation loginUser = null;
     loginUser = UserGroupInformation.getLoginUser();
