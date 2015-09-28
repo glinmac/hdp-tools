@@ -43,10 +43,13 @@
 
 ## Centrify
 
-adjoin
-adkeytab
-centrifydc
-adquery
+* adjoin
+
+        adjoin -i -V -z <ZONE> -S <DOMAIN> -n <HOSTNAME>  
+
+* adkeytab
+* centrifydc
+* adquery
 
 ## IPA
 
