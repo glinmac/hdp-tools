@@ -31,7 +31,7 @@ create_user_cmd = "ipa user-add %(username)s --first=%(first)s --last=%(last)s -
 reset_krb_expiration = "ldapmodify -D 'cn=directory manager' -w %(ipa_password)s -f %(path)s"
 create_keytab_cmd = "ipa-getkeytab -s %(ipa_server)s -p %(username)s@%(realm)s -k %(path_prefix)s/.%(username)s-headless.keytab -P"
 add_group_cmd = "ipa group-add-member %(group)s --users=%(user)s"
-create_group_cmd = "ipa group-add %(group)s --desc=%(description)s"
+create_group_cmd = "ipa group-add %(group)s --desc=\"%(description)s\""
 
 def user_exists(username):
     return subprocess.call((check_user_cmd % {'username': username}).split(), stdout=subprocess.PIPE) == 0
@@ -77,7 +77,7 @@ def create_keytab(data):
 
 def add_group(username, groupname):
     logging.debug('Adding %s to group %s' % (username, groupname))
-    p = subprocess.Popen((add_group_cmd % {'user': username, 'group': groupname}).split(), stdout=subprocess.PIPE) 
+    p = subprocess.Popen((add_group_cmd % {'user': username, 'group': groupname}).split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
     out, err = p.communicate()
     if p.returncode:
         if 'entry is already a member' in out:
@@ -87,33 +87,32 @@ def add_group(username, groupname):
     
 def create_group(groupname, description=None):
     logging.debug('Creating group %s' % groupname)
-    subprocess.check_call((create_group_cmd % { 'group': groupname, 'description': description if description else groupname}).split())
+    subprocess.check_call(create_group_cmd % { 'group': groupname, 'description': description if description else groupname}, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
 def process_users(users_file, keytab_path):
 
     with open(users_file) as csvfile:
-        r = csv.reader(csvfile, delimiter=',')
-        for row in r:
-            if row[0] != 'Name':
-                d = {
-                    'username': row[0],
-                    'description': row[1],
-                    'first': row[0],
-                    'last': row[0],
-                    'realm': REALM,
-                    'ipa_server': IPA_SERVER,
-                    'path_prefix': keytab_path
-                }
+        r = csv.DictReader(csvfile, delimiter=',')
+        for row in r:            
+            d = {
+                'username': row['Name'],
+                'description': row['Description'],
+                'first': row['Name'],
+                'last': row['Name'],
+                'realm': REALM,
+                'ipa_server': IPA_SERVER,
+                'path_prefix': keytab_path
+            }
 
-                if not user_exists(d['username']):
-                    create_user(d)
-                    change_krb_expiration(d['username'])                    
-                    create_keytab(d)
-                    for g in BASE_GROUPS:
-                        add_group(d['username'], g)
-                else:
-                    logging.debug('User %s already exists' % d['username'])
+            if not user_exists(d['username']):
+                create_user(d)
+                change_krb_expiration(d['username'])                    
+                create_keytab(d)
+                for g in BASE_GROUPS:
+                    add_group(d['username'], g)
+            else:
+                logging.debug('User %s already exists' % d['username'])
 
 
 def process_groups(group_file):
@@ -127,6 +126,8 @@ def process_membership(membership_file):
     with open(membership_file) as csvfile:
         r = csv.DictReader(csvfile, delimiter=',')
         for row in r:
+            if row['Group'][0] == '#':
+                continue
             if not group_exists(row['Group']):
                 create_group(row['Group'])
             add_group(row['Member'], row['Group'])
