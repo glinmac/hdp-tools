@@ -21,18 +21,6 @@ ranger_user = '<USER>'
 ranger_password = '<PASSWORD>'
 repository_name = '<REPONAME>'
 description_template = 'Policy for %s'
-policy_template = {
-    'policyName': '',
-    'resourceName': '',
-    'description': '',
-    'repositoryName': repository_name,
-    'repositoryType': 'hdfs',
-    'isEnabled': True,
-    'isRecursive': True,
-    'isAuditEnabled': True,
-    'permMapList': []
-}
-
 
 policy_template = {
     'policyName': '',
