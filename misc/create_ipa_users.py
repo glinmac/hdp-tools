@@ -252,7 +252,7 @@ if __name__ == '__main__':
             elif not os.path.isdir(options.keytab_path):
                 raise RuntimeError('keytab path already exists and is not a directory')
 
-        process_users(options.users, options.keytab_path)
+            process_users(options.users, options.keytab_path)
 
         if options.groups:
             process_groups(options.groups)
