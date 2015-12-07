@@ -58,6 +58,11 @@
         ipa-getkeytab -s $IPA_SERVER -p $USER/$HOSTNAME@$REALM -k /path/to/a.keytab
         # optionally -P to init with a known password
 
+* Changing krb5 expiration token for users (helps when automating creation of users - IPA requires users to login first to reset their password). To be changed with ldap tools (This works with RHEL6/centos6, TODO: check with RHEL7/centos7 IPA)
+        
+        changetype: modify
+        replace: krbpasswordexpiration
+        krbpasswordexpiration: 20990101000000Z
 
 
 
