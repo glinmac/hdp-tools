@@ -96,6 +96,11 @@ The following gives the list of layouts available:
                   "id" : 20,
     ...
     
+You can also use a filter to look for a specific widget given one of its property:
+
+    $ curl -u admin:admin -H 'X-Requested-By: ambari' -i  \
+        http://localhost:8080/api/v1/clusters/hadoop_cluster/widget_layouts?WidgetLayoutInfo/layout_name=admin_hdfs_dashboard
+
 To add a widget to a given layout, this is a matter of updating the list of widget IDs associated with the widget layout.
 
 The data to update:
