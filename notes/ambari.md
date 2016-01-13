@@ -1,5 +1,13 @@
 # Ambari Notes
 
+## Ambari agents
+
+It's possible to control which hostname the agents registered to the Ambari Server:
+
+ * [How to customize the name of a host](http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_ambari_reference_guide/content/_how_to_customize_the_name_of_a_host.html)
+
+
+
 ## Widgets
 
 This can be achieved using the widget editor in the UI or also could be automated using the Ambari API.
