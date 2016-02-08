@@ -20,6 +20,7 @@ Service | Parameter |
 --- | --- |
 HBase Master           | hbase.master.ipc.address
 HBase Master UI        | hbase.master.info.bindAddress
+HBase Master hostname  | hbase.master.hostname
 HBase Region Server UI | hbase.regionserver.info.bindAddress
 HBase Region Server    | hbase.regionserver.ipc.address
 HBase Region Server hostname (HBASE-12954) | hbase.regionserver.hostname
