@@ -16,14 +16,20 @@
 
 * Address on which the servers listen:
 
-Service | Parameter |
---- | --- |
-HBase Master           | hbase.master.ipc.address
-HBase Master UI        | hbase.master.info.bindAddress
-HBase Master hostname  | hbase.master.hostname
-HBase Region Server UI | hbase.regionserver.info.bindAddress
-HBase Region Server    | hbase.regionserver.ipc.address
-HBase Region Server hostname (HBASE-12954) | hbase.regionserver.hostname
+Service | Property
+------- | ---------
+HBase Master IPC | `hbase.master.ipc.address`
+HBase Master IPC port | `hbase.master.port`
+HBase Master UI |	`hbase.master.info.bindAddress`
+HBase Master UI port | `hbase.master.info.port`
+HBase Master Hostname |	`hbase.master.hostname`
+HBase Region Server IPC | `hbase.regionserver.ipc.address`
+HBase Region Server IPC port| `hbase.regionserver.port`
+HBase Region Server UI | `hbase.regionserver.info.bindAddress`
+HBase Region Server UI port | `hbase.regionserver.info.port`
+HBase Region Server Hostname ([HBASE-12954]) | `hbase.regionserver.hostname`
+
+[HBASE-12954]: https://issues.apache.org/jira/browse/HBASE-12954
        
 ## Export
 
