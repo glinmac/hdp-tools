@@ -45,3 +45,37 @@ If YARN/Mapreduce is not available and/or you want to test using only local reso
 
         hbase org.apache.hadoop.hbase.mapreduce.Export -Dmapreduce.framework.name=local ...
         
+## Snapshot
+
+* Create a snapshot of all tables:
+
+        snapshot_all
+        snapshot_all 'table_.*'
+    
+* Create a snapshot of one table:
+
+        snapshot 'myTable', 'mySnaphot'
+        
+* List snapshots
+
+        list_snapshots
+        list_snapshots 'snapshotname.*'
+        list_snapshots '.*20160313.*'
+
+* Restore a snapshot of a table:
+
+        disable 'myTable'
+        restore_snapshot 'myTable', 'mySnapshot'
+        enable 'myTable'
+
+* Restore all snapshots for a given date
+
+       snapshot_restore '20160316'
+       
+* Delete snapshot
+* Delete all snapshot
+* Clone from snapshot
+ 
+    
+    
+    
