@@ -47,7 +47,7 @@ If YARN/Mapreduce is not available and/or you want to test using only local reso
         
 ## Snapshot
 
-* Create a snapshot of all tables:
+* Create a snapshot of all tables (named $TABLE-ru-$date, eg `myTable-ru-20160314`, only one snapshot for a given day)
 
         snapshot_all
         snapshot_all 'table_.*'
