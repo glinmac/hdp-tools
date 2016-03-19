@@ -70,11 +70,20 @@ If YARN/Mapreduce is not available and/or you want to test using only local reso
 
 * Restore all snapshots for a given date
 
-       snapshot_restore '20160316'
+        snapshot_restore '20160316'
        
 * Delete snapshot
+
+        delete_snapshot 'mySnapshot'
+
 * Delete all snapshot
+
+        delete_all
+
 * Clone from snapshot
+
+        clone_snapshot 'mySnapshot', 'myNewTable'
+   
  
     
     
