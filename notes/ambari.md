@@ -6,7 +6,9 @@ It's possible to control which hostname the agents registered to the Ambari Serv
 
  * [How to customize the name of a host](http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_ambari_reference_guide/content/_how_to_customize_the_name_of_a_host.html)
 
+## LDAP
 
+  * [Automate LDAP sync](https://community.hortonworks.com/questions/2909/how-do-i-automate-the-ambari-ldap-sync.html)
 
 ## Widgets
 
