@@ -10,6 +10,16 @@ It's possible to control which hostname the agents registered to the Ambari Serv
 
   * [Automate LDAP sync](https://community.hortonworks.com/questions/2909/how-do-i-automate-the-ambari-ldap-sync.html)
 
+## Privileges / permissions
+
+  * Adding privileges
+  
+        curl -u admin:admin \
+	          -H "X-Requested-By:ambari" \
+	          -i -X POST \
+	          -d '[{"PrivilegeInfo":{"permission_name":"CLUSTER.READ", "principal_name":"ambari_admin_group", "principal_type":"GROUP"} } ]'  \
+	          http://localhost:8080/api/v1/clusters/my_cluster/privileges
+
 ## Widgets
 
 This can be achieved using the widget editor in the UI or also could be automated using the Ambari API.
