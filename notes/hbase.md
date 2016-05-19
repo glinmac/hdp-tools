@@ -31,6 +31,10 @@ HBase Region Server Hostname ([HBASE-12954]) | `hbase.regionserver.hostname`
 
 [HBASE-12954]: https://issues.apache.org/jira/browse/HBASE-12954
        
+## HBase shell
+
+    scan '<SOMETABLE>', {FILTER=>"KeyOnlyFilter() AND QualifierFilter(=,'regexstring:parofkey')"} 
+
 ## Export
 
     hbase org.apache.hadoop.hbase.mapreduce.Export <tablename> <outputdir> [<versions> [<starttime> [<endtime>]]]
