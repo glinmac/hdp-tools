@@ -1,0 +1,34 @@
+{
+  "name": "policy-example-1",
+  "service": null,
+  "isEnabled": true,
+  "isAuditEnabled": true,
+  "dataMaskPolicyItems": [],
+  "allowExceptions": [],
+  "rowFilterPolicyItems": [],
+  "denyExceptions": [],
+  "denyPolicyItems": [],
+  "policyItems": [
+    {
+      "groups": [
+        "analytics"
+      ],
+      "conditions": [],
+      "users": [],
+      "accesses": [
+        { "isAllowed": true, "type": "read" },
+        { "isAllowed": true, "type": "execute"}
+      ],
+      "delegateAdmin": false
+    }
+  ],
+  "resources": {
+    "path": {
+      "isExcludes": false,
+      "values": [
+        "/data/analytics"
+      ],
+      "isRecursive": true
+    }
+  }
+}
