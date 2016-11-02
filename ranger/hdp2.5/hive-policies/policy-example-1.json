@@ -1,0 +1,41 @@
+{
+  "name": "data-science-team-db-read",
+  "service": null,
+  "isEnabled": true,
+  "isAuditEnabled": true,
+  "dataMaskPolicyItems": [],
+  "allowExceptions": [],
+  "rowFilterPolicyItems": [],
+  "denyExceptions": [],
+  "denyPolicyItems": [],
+  "policyItems": [
+    {
+      "groups": [
+        "datascience"
+      ],
+      "conditions": [],
+      "users": [],
+      "accesses": [
+        { "isAllowed": true,  "type": "select" }
+      ],
+      "delegateAdmin": false
+    }
+  ],
+  "resources": {
+    "udf": {
+      "isExcludes": false,
+      "values": [
+        "*"
+      ],
+      "isRecursive": false
+    },
+    "database": {
+      "isExcludes": false,
+      "values": [
+        "raw",
+        "processed"
+      ],
+      "isRecursive": false
+    }
+  }
+}
