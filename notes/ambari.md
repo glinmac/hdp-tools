@@ -1,5 +1,107 @@
 # Ambari Notes
 
+## Upgrade
+When upgrading from 2.1 to 2.4.1.0, the database upgrade seemed to complain about object not being owned by the correct user:
+
+    Exception in thread "main" org.apache.ambari.server.AmbariException: ERROR: must be owner of relation topology_request
+
+
+To fix it:
+
+    ALTER TABLE adminpermission OWNER TO ambari;
+    ALTER TABLE adminprincipal OWNER TO ambari;
+    ALTER TABLE adminprincipaltype OWNER TO ambari;
+    ALTER TABLE adminprivilege OWNER TO ambari;
+    ALTER TABLE adminresource OWNER TO ambari;
+    ALTER TABLE adminresourcetype OWNER TO ambari;
+    ALTER TABLE alert_current OWNER TO ambari;
+    ALTER TABLE alert_definition OWNER TO ambari;
+    ALTER TABLE alert_group OWNER TO ambari;
+    ALTER TABLE alert_group_target OWNER TO ambari;
+    ALTER TABLE alert_grouping OWNER TO ambari;
+    ALTER TABLE alert_history OWNER TO ambari;
+    ALTER TABLE alert_notice OWNER TO ambari;
+    ALTER TABLE alert_target OWNER TO ambari;
+    ALTER TABLE alert_target_states OWNER TO ambari;
+    ALTER TABLE ambari_sequences OWNER TO ambari;
+    ALTER TABLE artifact OWNER TO ambari;
+    ALTER TABLE blueprint OWNER TO ambari;
+    ALTER TABLE blueprint_configuration OWNER TO ambari;
+    ALTER TABLE cluster_version OWNER TO ambari;
+    ALTER TABLE clusterconfig OWNER TO ambari;
+    ALTER TABLE clusterconfigmapping OWNER TO ambari;
+    ALTER TABLE clusterhostmapping OWNER TO ambari;
+    ALTER TABLE clusters OWNER TO ambari;
+    ALTER TABLE clusterservices OWNER TO ambari;
+    ALTER TABLE clusterstate OWNER TO ambari;
+    ALTER TABLE confgroupclusterconfigmapping OWNER TO ambari;
+    ALTER TABLE configgroup OWNER TO ambari;
+    ALTER TABLE configgrouphostmapping OWNER TO ambari;
+    ALTER TABLE execution_command OWNER TO ambari;
+    ALTER TABLE groups OWNER TO ambari;
+    ALTER TABLE host_role_command OWNER TO ambari;
+    ALTER TABLE host_version OWNER TO ambari;
+    ALTER TABLE hostcomponentdesiredstate OWNER TO ambari;
+    ALTER TABLE hostcomponentstate OWNER TO ambari;
+    ALTER TABLE hostconfigmapping OWNER TO ambari;
+    ALTER TABLE hostgroup OWNER TO ambari;
+    ALTER TABLE hostgroup_component OWNER TO ambari;
+    ALTER TABLE hostgroup_configuration OWNER TO ambari;
+    ALTER TABLE hosts OWNER TO ambari;
+    ALTER TABLE hoststate OWNER TO ambari;
+    ALTER TABLE kerberos_principal OWNER TO ambari;
+    ALTER TABLE kerberos_principal_host OWNER TO ambari;
+    ALTER TABLE key_value_store OWNER TO ambari;
+    ALTER TABLE members OWNER TO ambari;
+    ALTER TABLE metainfo OWNER TO ambari;
+    ALTER TABLE qrtz_blob_triggers OWNER TO ambari;
+    ALTER TABLE qrtz_calendars OWNER TO ambari;
+    ALTER TABLE qrtz_cron_triggers OWNER TO ambari;
+    ALTER TABLE qrtz_fired_triggers OWNER TO ambari;
+    ALTER TABLE qrtz_job_details OWNER TO ambari;
+    ALTER TABLE qrtz_locks OWNER TO ambari;
+    ALTER TABLE qrtz_paused_trigger_grps OWNER TO ambari;
+    ALTER TABLE qrtz_scheduler_state OWNER TO ambari;
+    ALTER TABLE qrtz_simple_triggers OWNER TO ambari;
+    ALTER TABLE qrtz_simprop_triggers OWNER TO ambari;
+    ALTER TABLE qrtz_triggers OWNER TO ambari;
+    ALTER TABLE repo_version OWNER TO ambari;
+    ALTER TABLE request OWNER TO ambari;
+    ALTER TABLE requestoperationlevel OWNER TO ambari;
+    ALTER TABLE requestresourcefilter OWNER TO ambari;
+    ALTER TABLE requestschedule OWNER TO ambari;
+    ALTER TABLE requestschedulebatchrequest OWNER TO ambari;
+    ALTER TABLE role_success_criteria OWNER TO ambari;
+    ALTER TABLE servicecomponentdesiredstate OWNER TO ambari;
+    ALTER TABLE serviceconfig OWNER TO ambari;
+    ALTER TABLE serviceconfighosts OWNER TO ambari;
+    ALTER TABLE serviceconfigmapping OWNER TO ambari;
+    ALTER TABLE servicedesiredstate OWNER TO ambari;
+    ALTER TABLE stack OWNER TO ambari;
+    ALTER TABLE stage OWNER TO ambari;
+    ALTER TABLE topology_host_info OWNER TO ambari;
+    ALTER TABLE topology_host_request OWNER TO ambari;
+    ALTER TABLE topology_host_task OWNER TO ambari;
+    ALTER TABLE topology_hostgroup OWNER TO ambari;
+    ALTER TABLE topology_logical_request OWNER TO ambari;
+    ALTER TABLE topology_logical_task OWNER TO ambari;
+    ALTER TABLE topology_request OWNER TO ambari;
+    ALTER TABLE upgrade OWNER TO ambari;
+    ALTER TABLE upgrade_group OWNER TO ambari;
+    ALTER TABLE upgrade_item OWNER TO ambari;
+    ALTER TABLE users OWNER TO ambari;
+    ALTER TABLE viewentity OWNER TO ambari;
+    ALTER TABLE viewinstance OWNER TO ambari;
+    ALTER TABLE viewinstancedata OWNER TO ambari;
+    ALTER TABLE viewinstanceproperty OWNER TO ambari;
+    ALTER TABLE viewmain OWNER TO ambari;
+    ALTER TABLE viewparameter OWNER TO ambari;
+    ALTER TABLE viewresource OWNER TO ambari;
+    ALTER TABLE widget OWNER TO ambari;
+    ALTER TABLE widget_layout OWNER TO ambari;
+    ALTER TABLE widget_layout_user_widget OWNER TO ambari;
+
+
 ## Ambari agents
 
 It's possible to control which hostname the agents registered to the Ambari Server:
